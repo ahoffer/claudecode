@@ -1,0 +1,56 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/local/bin/nerdctl completion:*)",
+      "Bash(sudo ls:*)",
+      "Bash(tar:*)",
+      "Bash(unzip:*)",
+      "Bash(nerdctl images:*)",
+      "Bash(sudo nerdctl images:*)",
+      "Bash(sudo groupadd:*)",
+      "Bash(ollama pull:*)",
+      "Bash(ollama run:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(ollama ps:*)",
+      "Bash(OLLAMA_DEBUG=1 ollama run:*)",
+      "Bash(ollama show:*)",
+      "Bash(pkill:*)",
+      "Bash(ollama:*)",
+      "Bash(curl:*)",
+      "WebSearch",
+      "Bash(opencode --help:*)",
+      "Bash(source ~/.bashrc)",
+      "Bash(~/.opencode/bin/opencode:*)",
+      "WebFetch(domain:support.claude.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(cat:*)",
+      "Bash(npm install)",
+      "Bash(npm run build)",
+      "Bash(find:*)",
+      "mcp__ollama-sidekick__ollama_list_models",
+      "mcp__plugin_serena_serena__get_current_config",
+      "mcp__plugin_serena_serena__activate_project",
+      "mcp__ollama-sidekick__ollama_generate_text",
+      "Bash(pgrep:*)",
+      "Bash(crontab:*)",
+      "mcp__ollama-sidekick__ollama_chat",
+      "mcp__ollama-sidekick__ollama_code_generation",
+      "Bash(systemctl:*)",
+      "Bash(systemctl status:*)",
+      "Bash(journalctl:*)",
+      "Bash(ssh tang \"cat ~/.claude/CLAUDE.md | head -40\")",
+      "Bash(ssh tang:*)",
+      "Bash(rsync:*)",
+      "mcp__ollama__ollama_chat",
+      "mcp__ollama__ollama_list",
+      "Bash(echo:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "ollama"
+  ],
+  "enabledPlugins": {
+    "serena@claude-plugins-official": true
+  }
+}
