@@ -105,6 +105,17 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/aaron/.claude/hooks/auto-summarize-output.sh"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {

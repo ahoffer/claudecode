@@ -54,6 +54,7 @@ Ollama runs on **bigfish**. From other hosts (e.g., tang), SSH to bigfish or con
 | `llm-ask` | Quick factual lookups |
 | `llm-index` | Index codebase for semantic search |
 | `llm-watch` | Run commands and summarize output |
+| `llm-explore` | Codebase exploration (agentic grep/find) |
 
 **When to use CLI tools (DO THIS AUTOMATICALLY):**
 1. **After running builds/tests**: Pipe output through `llm-summarize`
@@ -74,6 +75,22 @@ Ollama runs on **bigfish**. From other hosts (e.g., tang), SSH to bigfish or con
 - Security-sensitive code review
 - Refactoring with non-obvious implications
 - Tasks requiring conversation history
+
+## Codebase Exploration
+
+For exploratory questions about the codebase, prefer `llm-explore`:
+```bash
+llm-explore "where is authentication handled?"
+llm-explore "what tests cover the User model?"
+llm-explore "find usages of deprecated API"
+llm-explore "what modules handle SGPro integration?"
+```
+
+This uses local Ollama (free) instead of Claude context. The tool:
+- Runs grep/find/cat commands autonomously via Ollama
+- Iterates up to 5 times to gather information
+- Returns only the final answer (not intermediate output)
+- Blocks destructive commands (rm, mv, sudo, etc.)
 
 ## Startup Tasks
 
