@@ -66,6 +66,7 @@ Ollama runs on **bigfish**. From other hosts (e.g., tang), SSH to bigfish or con
 3. **On errors**: Pipe to `llm-explain-error` for quick diagnosis
 4. **Generating boilerplate**: Use `llm-gen-code --lang <lang>`
 5. **Large log files**: Always summarize before reading fully
+6. **After modifying scripts**: Test and pipe output through `llm-summarize` to verify
 
 **MCP Tools (alternative to CLI):**
 - `mcp__ollama__*` tools with models: `llama3.2:latest`, `qwen2.5-coder:7b`, `nomic-embed-text:latest`

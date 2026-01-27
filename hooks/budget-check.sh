@@ -29,3 +29,18 @@ if [[ "$calls" -gt 0 ]]; then
     jq -n --arg msg "📊 Ollama: $fmt_tokens tokens ($calls calls)$convo_label" \
         '{"systemMessage": $msg}'
 fi
+
+# Check Claude budget and provide guidance
+STATS_FILE="$HOME/.claude/stats-cache.json"
+if [[ -f "$STATS_FILE" ]]; then
+    today=$(date +%Y-%m-%d)
+    messages=$(jq -r --arg date "$today" '.dailyActivity[] | select(.date == $date) | .messageCount // 0' "$STATS_FILE" 2>/dev/null || echo "0")
+    daily_limit=500
+    pct=$((messages * 100 / daily_limit))
+
+    if [[ $pct -ge 75 ]]; then
+        jq -n '{"systemMessage": "⚠️ Claude budget >75% - AGGRESSIVELY use llm-* tools for all routine tasks"}'
+    elif [[ $pct -ge 25 ]]; then
+        jq -n '{"systemMessage": "📊 Claude budget 25-75% - Prefer llm-* tools for summaries, boilerplate, tests"}'
+    fi
+fi

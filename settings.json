@@ -73,6 +73,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "/home/aaron/.claude/hooks/ollama-health-check.sh"
+          },
+          {
+            "type": "command",
             "command": "/home/aaron/.claude/hooks/ollama-session-start.sh"
           },
           {

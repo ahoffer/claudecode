@@ -45,6 +45,10 @@ if echo "$prompt_lower" | grep -qE '(regex|regular expression|pattern for)'; the
     hints+=("💡 Regex generation → Consider: llm-regex \"<description>\"")
 fi
 
+if echo "$prompt_lower" | grep -qE '(where is|find.*(in|across).*code|what (files|modules)|which (class|file|module)|how does.*work)'; then
+    hints+=("💡 Codebase exploration → Consider: llm-explore \"<question>\"")
+fi
+
 # Output hints if any (plain text stdout is added as context per Claude Code docs)
 if [[ ${#hints[@]} -gt 0 ]]; then
     echo "OFFLOAD OPPORTUNITY:"
