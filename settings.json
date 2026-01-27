@@ -119,6 +119,15 @@
             "command": "/home/aaron/.claude/hooks/auto-summarize-output.sh"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/aaron/.claude/hooks/adversarial-review.sh"
+          }
+        ]
       }
     ]
   },
