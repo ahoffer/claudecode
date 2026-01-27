@@ -55,6 +55,7 @@ Ollama runs on **bigfish**. From other hosts (e.g., tang), SSH to bigfish or con
 | `llm-index` | Index codebase for semantic search |
 | `llm-watch` | Run commands and summarize output |
 | `llm-explore` | Codebase exploration (agentic grep/find) |
+| `llm-budget` | Check Claude Code daily message usage |
 
 **When to use CLI tools (DO THIS AUTOMATICALLY):**
 1. **After running builds/tests**: Pipe output through `llm-summarize`
@@ -91,6 +92,15 @@ This uses local Ollama (free) instead of Claude context. The tool:
 - Iterates up to 5 times to gather information
 - Returns only the final answer (not intermediate output)
 - Blocks destructive commands (rm, mv, sudo, etc.)
+
+## Budget Awareness
+
+Periodically check Claude usage with `llm-budget`:
+- **< 25%**: Normal operation
+- **25-75%**: Prefer llm-* tools for routine tasks
+- **> 75%**: Aggressively offload - use llm-explore, llm-summarize, llm-gen-code
+
+Use `/ollama-usage` to see how many tokens were offloaded to Ollama this session.
 
 ## Startup Tasks
 
