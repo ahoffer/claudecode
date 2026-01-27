@@ -43,7 +43,8 @@
       "Bash(rsync:*)",
       "mcp__ollama__ollama_chat",
       "mcp__ollama__ollama_list",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(shopt:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
