@@ -10,6 +10,8 @@
 
 - NEVER call `git push`
 - NEVER create a new branch without user approval (no `git checkout -b`, `git branch`, `git switch -c`)
+- ALWAYS wait for user confirmation before committing changes - do NOT commit automatically after tests pass
+- NEVER add AI attribution lines to commits (no `Co-Authored-By: Claude`, `Co-Authored-By: AI`, or similar)
 
 ## Host-Specific Container Tools
 

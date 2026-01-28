@@ -46,7 +46,11 @@
       "Bash(echo:*)",
       "Bash(shopt:*)",
       "mcp__ollama__ollama_web_search",
-      "Bash(ddgr:*)"
+      "Bash(ddgr:*)",
+      "Bash(kitty:*)",
+      "Bash([[ \"$TERM\" == xterm-color)",
+      "Bash(\"$TERM\" == *-256color ]])",
+      "Bash(bash:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
