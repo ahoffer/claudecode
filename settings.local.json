@@ -50,7 +50,10 @@
       "Bash(kitty:*)",
       "Bash([[ \"$TERM\" == xterm-color)",
       "Bash(\"$TERM\" == *-256color ]])",
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "Bash(npx playwright install chromium)",
+      "Bash(./run-tests.sh:*)",
+      "Bash(vulkaninfo:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
