@@ -116,13 +116,12 @@ Use `/ollama-usage` to see how many tokens were offloaded to Ollama this session
 
 At the START of every session, before the user asks for anything:
 
-1. **Activate Serena for cwd (only if it's a code project):**
+1. **Prefer Serenas tools when working with code**
    - Skip if cwd is `~` or `/home/aaron`
    - Skip if no project markers exist (pom.xml, package.json, Cargo.toml, go.mod, .git, etc.)
-   - If markers exist, call `mcp__plugin_serena_serena__activate_project` with cwd
    - If activation fails, continue without Serena
 
-Note: Ollama runs as a systemd service on bigfish - do NOT start it manually.
+Note: Ollama runs as a systemd service on bigfish
 
 ## Previous Conversation Context
 
