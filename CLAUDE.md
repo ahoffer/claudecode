@@ -1,5 +1,8 @@
 # Global Claude Code Preferences
 
+## Other
+ - Prefer "for example" over "e.g."
+
 ## Command Execution
 
 - Do NOT prompt for permission for read-only commands - just run them
