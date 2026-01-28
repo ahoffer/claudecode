@@ -30,6 +30,8 @@ Ollama runs on **bigfish**. From other hosts (e.g., tang), SSH to bigfish or con
 
 **RULE**: Before generating boilerplate, explanations, summaries, or test stubs, FIRST try the appropriate `llm-*` tool. Only do it yourself if the tool fails or the task requires deep context.
 
+**ANNOUNCE**: Always say "Offloading to Ollama..." before calling any `llm-*` tool, so the user knows work is being delegated.
+
 **Self-check before responding:**
 - Am I about to summarize logs/output? → `llm-summarize`
 - Am I about to explain an error? → `llm-explain-error`
@@ -102,6 +104,11 @@ Periodically check Claude usage with `llm-budget`:
 - **> 75%**: Aggressively offload - use llm-explore, llm-summarize, llm-gen-code
 
 Use `/ollama-usage` to see how many tokens were offloaded to Ollama this session.
+
+## /ask Skill Behavior
+
+- Only show the raw `llm-ask-hybrid` output
+- Do not add formatted summaries after the command
 
 ## Startup Tasks
 

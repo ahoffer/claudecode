@@ -44,7 +44,9 @@
       "mcp__ollama__ollama_chat",
       "mcp__ollama__ollama_list",
       "Bash(echo:*)",
-      "Bash(shopt:*)"
+      "Bash(shopt:*)",
+      "mcp__ollama__ollama_web_search",
+      "Bash(ddgr:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
