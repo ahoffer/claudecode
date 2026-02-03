@@ -21,6 +21,7 @@
 - NEVER run `env`, `printenv`, `set`, `export -p`, `declare -p`, or any command that dumps all environment variables.
 - Always pass env vars by reference using `$VAR_NAME`. Never expand, echo, print, log, or write their resolved values to files, output, or commands. If you need to discover the name of an env var, ask the user.
 - The GitLab token env var is `$GITLAB_BOT_READ_TOKEN`.
+- If an env var that looks like a credential, token, password, or secret resolves to an empty string, stop and alert the user. Suggest restarting with the var passed at launch and provide a copy-pasteable command, for example `GITLAB_BOT_READ_TOKEN=$GITLAB_BOT_READ_TOKEN claude`.
 
 ## Startup
 - Prefer Serena's tools when working with code
