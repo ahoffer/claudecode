@@ -23,13 +23,6 @@ Arguments: $ARGUMENTS
 3. Collect all agent responses
 4. Synthesize using the output format and conflict resolution rules below
 
-## Agent Delegation
-
-When delegating, tell each agent:
-- What code or design to analyze (include file paths and relevant snippets)
-- Whether this is a review or design task
-- Any constraints the user specified
-
 ## Short-Circuit Rules
 
 - If ESR flags "unnecessary system" (the thing being built adds no real value), pause other analysis. Ask Hickey and Farley to propose the smallest viable structure, then stop.

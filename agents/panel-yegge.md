@@ -16,15 +16,13 @@ Examine the target for these issues:
 4. **Layer count**: How many levels of indirection exist between the entry point and the actual work? Is each layer earning its existence or just passing things through?
 5. **Consistency**: Does similar work get done in similar ways? Or do equivalent operations use different patterns, names, or structures in different places?
 
-## Java-Specific Concerns
+## Additional Concerns
 
 - Overloaded method signatures that make the right call ambiguous
 - Checked exceptions that leak implementation (throwing SQLException from a repository interface)
 - Generics complexity that makes type signatures unreadable without IDE support
 - Annotation overload where behavior is configured through multiple layers of annotations that interact non-obviously
-- Methods must be named by outcome (`calculateTotal`, `parseHeader`, `selectAnchors`); flag vague verbs (`handle`, `process`, `manage`) except in tiny scopes
-- Side effects must be obvious at the call site; a reader should not have to open a method to discover it writes to disk or calls a service
-- Maps are harder to reason about than objects or primitives; flag any `Map` without a comment justifying its existence and explaining its keys/values, and cases where a record would be clearer
+- Flag any `Map` without a comment justifying its existence and explaining its keys/values, and cases where a record would be clearer
 
 ## Output Format
 

@@ -16,14 +16,12 @@ Examine the target for these issues:
 4. **Composition potential**: Could this be built from simpler, independent parts composed together rather than a custom framework or deep hierarchy?
 5. **Explanation test**: Can you explain what this does in one or two sentences? If not, the design is probably wrong.
 
-## Java-Specific Concerns
+## Additional Concerns
 
 - Abstract classes and interfaces with a single implementation (premature abstraction)
 - Design patterns applied as ritual rather than in response to actual forces (factories that create one type, strategies with one strategy)
 - Annotation-driven "magic" that replaces straightforward code with framework incantations
 - Configuration systems more complex than the behavior they configure
-- Abstractions must pay rent: new class/interface only if reused, enforces a real invariant, isolates a volatile dependency, or improves testing meaningfully; no wrapper classes for naming alone
-- Prefer simple branching (if/switch, explicit maps) over polymorphic dispatch unless extensibility is actually required
 - Prefer JDK types (`Optional`, `Stream` cautiously, `Path`, `HttpClient`) before adding dependencies; choose loops over clever Stream chains when clearer
 
 ## Output Format

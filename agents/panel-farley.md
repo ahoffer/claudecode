@@ -16,15 +16,13 @@ Examine the target for these issues:
 4. **Observability**: At key transitions, can you tell what happened? Are there natural points for logging, metrics, or traces that the design supports without retrofitting?
 5. **Outcome orientation**: Does the code express what it achieves, or does it express how it manipulates internal state? Can you write a test that asserts a business outcome rather than an implementation detail?
 
-## Java-Specific Concerns
+## Additional Concerns
 
 - Constructor injection vs. hidden dependencies (new operators, static calls, service locators)
 - Testable units vs. classes that require a running container or database
 - Interface boundaries that enable test doubles vs. concrete class coupling
 - Transaction boundaries that make behavior hard to test in isolation
-- Main path flatness: orchestration logic should be readable in one file with ≤2–3 call hops
-- Test behavior and public APIs, not wiring; minimize mocks; prefer fakes/in-memory implementations at boundaries
-- Errors are part of the design: no exceptions for expected control flow; prefer `Optional` for "maybe" or a small `Result<T,E>` type with meaningful messages
+- Errors are part of the design: prefer `Optional` for "maybe" or a small `Result<T,E>` type with meaningful messages
 
 ## Output Format
 

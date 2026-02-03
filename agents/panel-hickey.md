@@ -16,14 +16,12 @@ Examine the target for these issues:
 4. **Incidental complexity**: What complexity exists because of how the code is structured rather than because the problem demands it?
 5. **Data modeling**: Could the core abstractions be expressed as plain data with explicit transformations rather than objects with methods?
 
-## Java-Specific Concerns
+## Additional Concerns
 
-- Records vs. mutable classes: could entities be records or value types? Default to `record` for immutable data passed between layers; prefer small DTOs over rich "everything objects"
-- Separate pure "compute" methods from "do" methods that perform effects; keep mutation rare and localized
+- Default to `record` for immutable data passed between layers
 - Stream pipelines vs. imperative mutation loops
-- Unnecessary inheritance hierarchies where composition or data transformation would suffice; inheritance only for true "is-a" with shared behavior
 - Builder patterns that mask unclear data boundaries
-- Maps are harder to reason about than objects or primitives; if a `Map` models structured data with known keys, it should be a record; maps are for true dynamic lookups, not substitutes for named fields
+- If a `Map` models structured data with known keys, it should be a record; maps are for true dynamic lookups, not substitutes for named fields
 
 ## Output Format
 
