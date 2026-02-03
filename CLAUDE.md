@@ -2,8 +2,10 @@
 
 ## Style
 - Prefer "for example" over "e.g."
-- Normal sentence case in code comments; no colons/dashes; elide articles/prepositions
-- NEVER use numbered or bulleted lists in code comments; write prose sentences instead
+- Avoid punctuation other than commas and periods in comments and documents. Avoid parentheses, colons, dashes, and such.
+- Normal sentence case in code comments. Elide articles and prepositions.
+- NEVER use numbered or bulleted lists in code comments. Write prose sentences instead.
+- NEVER use all caps in comments.
 - Names of methods, variables, and temps (not lambdas) must reveal why they exist, conveying purpose (`possibleMatch`) or purpose and type (`possibleMatchId`). Avoid mechanical names (`temp`, `result`, `data`, `val`).
 
 ## Command Execution
