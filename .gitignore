@@ -1,11 +1,14 @@
 # Secrets - NEVER commit
 .credentials.json
 
+# Local/host-specific settings
+settings.local.json
+.claude/
+
 # Conversation history (large, personal)
 history.jsonl
 
 # Generated/cache directories
-agents/
 cache/
 debug/
 downloads/
@@ -17,6 +20,7 @@ projects/
 session-env/
 shell-snapshots/
 statsig/
+tasks/
 telemetry/
 todos/
 
@@ -38,3 +42,5 @@ mcp-servers/
 # OS files
 .DS_Store
 Thumbs.db
+/.idea/
+/.claude.iml

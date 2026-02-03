@@ -10,9 +10,12 @@
       "WebSearch",
       "Task",
       "TodoWrite",
+      "mcp__plugin_serena_serena__*",
       "Bash(git *)",
       "Bash(mvn *)",
       "Bash(npm *)",
+      "Bash(qb)",
+      "Bash(qb *)",
       "Bash(cat *)",
       "Bash(ls *)",
       "Bash(pwd)",
@@ -23,113 +26,25 @@
       "Bash(tail *)",
       "Bash(wc *)",
       "Bash(chmod *)",
-      "mcp__plugin_serena_serena__*",
-      "mcp__plugin_serena_serena__read_file",
-      "mcp__plugin_serena_serena__activate_project",
-      "Bash(mvn test:*)",
-      "Bash(qb:*)",
-      "Bash(mvn install:*)",
-      "Bash(mvn compile:*)",
-      "Bash(./qb)",
-      "mcp__plugin_serena_serena__find_symbol",
-      "Bash(git checkout:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "mcp__plugin_serena_serena__get_current_config",
-      "mcp__plugin_serena_serena__search_for_pattern",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(chmod:*)",
-      "Bash(kubectl get:*)",
-      "Bash(kubectl cp:*)",
-      "Bash(kubectl logs:*)",
-      "Bash(python3:*)",
-      "Bash(cx-deploy:*)",
-      "Bash(cxdeploy --help:*)",
-      "Bash(~/bin/cxdeploy:*)",
-      "Bash(klog cx-edge:*)",
-      "Bash(../../qb)",
-      "Bash(xargs:*)",
-      "Bash(jar tf:*)",
-      "Bash(unzip:*)",
-      "Bash(cxbuild edge:*)",
-      "Bash(cxdeploy edge:*)",
-      "Bash(k8s-deploy-jar:*)",
-      "Bash(klog graphql:*)",
-      "Bash(klog app:*)",
-      "Bash(~/bin/llm-*)",
-      "Bash(/home/aaron/bin/llm-*)",
+      "Bash(grep *)",
+      "Bash(xargs *)",
+      "Bash(jar tf *)",
+      "Bash(unzip *)",
+      "Bash(python3 *)",
+      "Bash(kubectl get *)",
+      "Bash(kubectl cp *)",
+      "Bash(kubectl logs *)",
+      "Bash(klog *)",
+      "Bash(cxdeploy *)",
+      "Bash(cx-deploy *)",
+      "Bash(cxbuild *)",
+      "Bash(k8s-deploy-jar *)",
       "Bash(llm-*)"
     ],
     "deny": [
-      "Bash(git push*)",
-      "Bash(git push)"
+      "Bash(git push*)"
     ],
     "defaultMode": "default"
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/ollama-health-check.sh"
-          },
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/ollama-session-start.sh"
-          },
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/serena-auto-activate.sh"
-          },
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/budget-check.sh"
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/ollama-pre-compact.sh"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/prompt-offload-hint.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Bash|Grep",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/auto-summarize-output.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/home/aaron/.claude/hooks/adversarial-review.sh"
-          }
-        ]
-      }
-    ]
   },
   "enabledPlugins": {
     "serena@claude-plugins-official": true,

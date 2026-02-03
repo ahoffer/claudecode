@@ -2,6 +2,8 @@
 
 ## Other
  - Prefer "for example" over "e.g."
+ - Never use ALL CAPS in code comments (use normal sentence case)
+ - Avoid colons and dashes in code comments; use natural language with elision of articles/prepositions
 
 ## Command Execution
 
