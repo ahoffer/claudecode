@@ -21,7 +21,17 @@
       "Bash(> /*)",
       "Bash(chmod 777*)",
       "Bash(curl * | bash*)",
-      "Bash(wget * | bash*)"
+      "Bash(wget * | bash*)",
+      "Bash(cat *bashrc*)",
+      "Bash(cat *bash_profile*)",
+      "Bash(cat *profile*)",
+      "Bash(env)",
+      "Bash(env *)",
+      "Bash(printenv)",
+      "Bash(printenv *)",
+      "Bash(set)",
+      "Bash(export -p*)",
+      "Bash(declare -p*)"
     ],
     "defaultMode": "default"
   },

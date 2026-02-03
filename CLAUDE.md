@@ -16,6 +16,11 @@
 ## Hosts
 - **tang**: docker (no buildx) | **bigfish**: nerdctl (not docker)
 
+## Security
+- NEVER read ~/.bashrc, ~/.bash_profile, ~/.profile, or any shell rc/profile files. They contain secrets.
+- NEVER run `env`, `printenv`, `set`, `export -p`, `declare -p`, or any command that dumps all environment variables.
+- Always pass env vars by reference using `$VAR_NAME`. Never expand, echo, print, log, or write their resolved values to files, output, or commands. If you need to discover the name of an env var, ask the user.
+
 ## Startup
 - Prefer Serena's tools when working with code
 
