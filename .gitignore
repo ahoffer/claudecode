@@ -29,11 +29,11 @@ stats-cache.json
 *.tmp
 *.log
 
-# Plugin cache (keep installed_plugins.json)
-plugins/cache/
-plugins/marketplaces/
-plugins/install-counts-cache.json
-plugins/known_marketplaces.json
+# Plugin state (generated, host-specific)
+plugins/
+
+# Memories (host-specific runtime state)
+memories/
 
 # MCP servers (cloned repos with their own git history)
 # Document which servers to install in README
