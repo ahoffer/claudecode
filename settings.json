@@ -39,8 +39,6 @@
       "Bash(cx-deploy *)",
       "Bash(cxbuild *)",
       "Bash(k8s-deploy-jar *)",
-      "Bash(llm-*)",
-      "Bash(cat *)",
       "Bash(jq *)"
     ],
     "deny": [
