@@ -23,6 +23,8 @@ Examine the target for these issues:
 - Deep inheritance chains where overriding one method has non-obvious effects
 - Package-private visibility that blocks test access without structural changes
 - Frameworks that require integration tests where unit tests should suffice
+- Side effects must be explicit at the call site; all filesystem/network/db/process calls obvious so developers can assess blast radius before changing code
+- Each business rule in a single obvious place (one rule, one place) so modifications don't require coordinated changes across files
 
 ## Output Format
 

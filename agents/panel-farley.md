@@ -22,6 +22,9 @@ Examine the target for these issues:
 - Testable units vs. classes that require a running container or database
 - Interface boundaries that enable test doubles vs. concrete class coupling
 - Transaction boundaries that make behavior hard to test in isolation
+- Main path flatness: orchestration logic should be readable in one file with ≤2–3 call hops
+- Test behavior and public APIs, not wiring; minimize mocks; prefer fakes/in-memory implementations at boundaries
+- Errors are part of the design: no exceptions for expected control flow; prefer `Optional` for "maybe" or a small `Result<T,E>` type with meaningful messages
 
 ## Output Format
 

@@ -22,6 +22,9 @@ Examine the target for these issues:
 - Checked exceptions that leak implementation (throwing SQLException from a repository interface)
 - Generics complexity that makes type signatures unreadable without IDE support
 - Annotation overload where behavior is configured through multiple layers of annotations that interact non-obviously
+- Methods must be named by outcome (`calculateTotal`, `parseHeader`, `selectAnchors`); flag vague verbs (`handle`, `process`, `manage`) except in tiny scopes
+- Side effects must be obvious at the call site; a reader should not have to open a method to discover it writes to disk or calls a service
+- Maps are harder to reason about than objects or primitives; flag any `Map` without a comment justifying its existence and explaining its keys/values, and cases where a record would be clearer
 
 ## Output Format
 

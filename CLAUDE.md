@@ -23,5 +23,9 @@
 ## Previous Conversations
 Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `~/.claude/projects/<project-path>/<session-id>.jsonl`, prompts in `~/.claude/history.jsonl`.
 
+## Coding Rules
+- When writing or modifying code in any language, follow the rules in `~/.claude/coding-rules.md`
+- When writing or modifying Java 17+ code, also follow `~/.claude/java-rules.md`
+
 ## Maven Projects
-- ALWAYS run `qb && mvn test` to run unit tests. 
+- ALWAYS run `qb && mvn test` to run unit tests.

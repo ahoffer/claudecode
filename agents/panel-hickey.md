@@ -18,10 +18,12 @@ Examine the target for these issues:
 
 ## Java-Specific Concerns
 
-- Records vs. mutable classes: could entities be records or value types?
+- Records vs. mutable classes: could entities be records or value types? Default to `record` for immutable data passed between layers; prefer small DTOs over rich "everything objects"
+- Separate pure "compute" methods from "do" methods that perform effects; keep mutation rare and localized
 - Stream pipelines vs. imperative mutation loops
-- Unnecessary inheritance hierarchies where composition or data transformation would suffice
+- Unnecessary inheritance hierarchies where composition or data transformation would suffice; inheritance only for true "is-a" with shared behavior
 - Builder patterns that mask unclear data boundaries
+- Maps are harder to reason about than objects or primitives; if a `Map` models structured data with known keys, it should be a record; maps are for true dynamic lookups, not substitutes for named fields
 
 ## Output Format
 
