@@ -27,4 +27,5 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 - When writing or modifying Java 17+ code, also follow `~/.claude/java-rules.md`
 
 ## Maven Projects
+- `qb` is a quick-build alias. ALWAYS run it from the module directory where the relevant pom.xml lives, or pass `-pl <module>` to target a single module. NEVER run `qb` from the project root without `-pl`.
 - ALWAYS run `qb && mvn test` to run unit tests.
