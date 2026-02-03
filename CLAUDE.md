@@ -8,10 +8,6 @@
 - NEVER use all caps in comments.
 - Names of methods, variables, and temps (not lambdas) must reveal why they exist, conveying purpose (`possibleMatch`) or purpose and type (`possibleMatchId`). Avoid mechanical names (`temp`, `result`, `data`, `val`).
 
-## Command Execution
-- Run read-only commands without asking; prompt user to copy/paste sudo commands
-- Prefer action to confirmation.
-
 ## Git
 - NEVER `git push` or create branches without user approval
 - ALWAYS wait for user confirmation before committing
