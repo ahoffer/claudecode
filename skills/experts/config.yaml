@@ -2,24 +2,65 @@
 # Each expert maps to an agent file at ~/.claude/agents/experts-{name}.md
 
 experts:
+  # Structural clarity
   hickey:
     lens: conceptual integrity
     priority: 3
-  farley:
-    lens: behavior delivery
-    priority: 2
+  pike:
+    lens: clarity and restraint
+    priority: 6
+  metz:
+    lens: practical composition
+    priority: 7
+
+  # Changeability
   feathers:
     lens: change safety
-    priority: 1
-  yegge:
-    lens: API ergonomics
     priority: 4
+  fowler:
+    lens: refactoring vocabulary
+    priority: 5
+  beck:
+    lens: evolutionary simplicity
+    priority: 8
+
+  # Domain alignment
+  evans:
+    lens: domain modeling
+    priority: 9
+  adzic:
+    lens: traceable value
+    priority: 13
+
+  # API and reader experience
+  yegge:
+    lens: reader experience
+    priority: 10
+
+  # Operational
+  farley:
+    lens: testable systems
+    priority: 2
+  cantrill:
+    lens: operational honesty
+    priority: 11
+  kleppmann:
+    lens: honest trade-offs
+    priority: 12
+
+  # Simplicity check (always last)
   esr:
     lens: complexity veto
-    priority: 5
+    priority: 1
 
 modes:
   review:
     experts: all
   design:
-    experts: [hickey, farley, esr]
+    experts: [hickey, farley, evans, kleppmann, esr]
+  refactor:
+    experts: [feathers, fowler, metz, beck, pike]
+  api:
+    experts: [yegge, hickey, fowler, pike]
+  ops:
+    experts: [cantrill, farley, kleppmann]
