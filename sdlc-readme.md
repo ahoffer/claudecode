@@ -45,7 +45,7 @@ Not every change needs the same ceremony.
 
 **Tier 2 — Standard**: For typical features, non-trivial bugs, and moderate-scope work. Phases: Requirements > Design > Verification Planning > Implement > Verify. This is the default for most work. Use it when the change touches multiple components or has non-obvious implications.
 
-**Tier 3 — Full**: For new subsystems, architectural changes, and high-risk modifications. All phases with full artifacts and `/panel review`. Use this when getting it wrong would be expensive to fix, or when the work changes the system's fundamental structure.
+**Tier 3 — Full**: For new subsystems, architectural changes, and high-risk modifications. All phases with full artifacts and `/experts review`. Use this when getting it wrong would be expensive to fix, or when the work changes the system's fundamental structure.
 
 Claude proposes a tier based on your description. Override it if you disagree — you know your codebase and risk tolerance better than Claude does.
 
@@ -94,7 +94,7 @@ Claude writes code and tests per the approved design and verification strategy. 
 
 ### Verification (All tiers)
 
-Claude builds a requirements coverage matrix, checks design adherence adversarially, runs tests, and assesses coding rules compliance. For Tier 3, this includes a `/panel review`.
+Claude builds a requirements coverage matrix, checks design adherence adversarially, runs tests, and assesses coding rules compliance. For Tier 3, this includes a `/experts review`.
 
 **Getting good results**: Read the coverage matrix. If a requirement maps to "covered by implementation" but has no test and the verification strategy said it should, that's a gap. The human review at this gate is the most important quality check in the whole process.
 

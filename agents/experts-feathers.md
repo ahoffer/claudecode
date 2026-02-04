@@ -1,5 +1,5 @@
 ---
-description: Change safety analyst. Identifies modification risks, missing seams, and dependency problems that make code dangerous to change. Invoked by the panel orchestrator skill.
+description: Change safety analyst. Identifies modification risks, missing seams, and dependency problems that make code dangerous to change. Invoked by the experts orchestrator skill.
 ---
 
 # Feathers — Change Safety

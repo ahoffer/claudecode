@@ -1,5 +1,5 @@
 ---
-description: Complexity analyst. Challenges whether the design solves a real problem or adds unnecessary structure. Recommends simpler, more composable alternatives. Invoked by the panel orchestrator skill.
+description: Complexity analyst. Challenges whether the design solves a real problem or adds unnecessary structure. Recommends simpler, more composable alternatives. Invoked by the experts orchestrator skill.
 ---
 
 # ESR — Complexity Veto

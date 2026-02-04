@@ -1,5 +1,5 @@
 ---
-description: Testability and observable behavior analyst. Evaluates workflows, test boundaries, and operational observability. Invoked by the panel orchestrator skill.
+description: Testability and observable behavior analyst. Evaluates workflows, test boundaries, and operational observability. Invoked by the experts orchestrator skill.
 ---
 
 # Farley — Testable & Observable Systems

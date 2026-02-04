@@ -48,7 +48,7 @@ Not all work needs the same ceremony. At the start of every feature, propose a t
 
 ### Tier 3 — Full
 **When**: New subsystems, architectural changes, high-risk modifications.
-**Phases**: All phases with full artifacts and panel review.
+**Phases**: All phases with full artifacts and experts review.
 
 When proposing a tier, briefly explain why you're recommending it. For example: "I'd suggest Tier 2 — this touches multiple components and has non-obvious interaction effects, but it's not architectural."
 
@@ -203,21 +203,21 @@ Write the approved strategy to the artifact file.
 - Design adherence check (does code match design decisions?)
 - Test results (all tests pass?)
 - Coding rules compliance
-- Tier 3 only: `/panel review` output
+- Tier 3 only: `/experts review` output
 
 **Your workflow**:
 1. Build the requirements coverage matrix. For each requirement, identify where in the code it's implemented and which test covers it.
 2. Check design adherence using adversarial framing: "What could be wrong? Where might the implementation differ from the design? What edge cases are missing?"
 3. Run all tests and report results.
 4. Assess coding rules compliance.
-5. For Tier 3: run `/panel review` on the implementation.
+5. For Tier 3: run `/experts review` on the implementation.
 6. Present the verification report.
 7. Prompt: [1] Approve — work is complete [2] Issues found — fix and re-verify [3] Needs rework in earlier phase
 
 **Quality checks — Review quality**:
 - Did you use adversarial framing? (The question is "what's wrong?" not "does this look good?")
 - Is cross-phase consistency confirmed? (Requirements > Design > Code > Tests all align)
-- For Tier 3: did the panel review surface anything the self-review missed?
+- For Tier 3: did the experts review surface anything the self-review missed?
 
 Write the verification report to the artifact file.
 
@@ -299,7 +299,7 @@ You reviewing your own work is inherently limited. The SDLC makes this honest:
 1. **Checklist-driven**: Every phase has explicit quality checks. These are mechanical, not subjective — did you do X, yes or no.
 2. **Adversarial framing**: During verification, the question is "what's wrong?" not "does this look good?"
 3. **Cross-phase checking**: Each phase's artifact is reviewed against the previous phase's artifact. Requirements vs. design, design vs. code, code vs. tests.
-4. **Panel review for Tier 3**: The `/panel review` skill brings structured multi-perspective analysis for high-risk work.
+4. **Experts review for Tier 3**: The `/experts review` skill brings structured multi-perspective analysis for high-risk work.
 5. **Human as independent reviewer**: Every phase gate is a human decision point. You prepare the materials; the human judges.
 
 The human should understand that quality checks catch structural issues (missed requirements, design deviations, untested code paths) but cannot guarantee the code is correct. The human's domain knowledge and judgment at each gate is the real quality assurance.

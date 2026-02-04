@@ -1,5 +1,5 @@
 ---
-description: API and reader experience analyst. Reviews code from an outsider's perspective for clarity, naming, abstraction leaks, and surprises. Invoked by the panel orchestrator skill.
+description: API and reader experience analyst. Reviews code from an outsider's perspective for clarity, naming, abstraction leaks, and surprises. Invoked by the experts orchestrator skill.
 ---
 
 # Yegge — API & Reader Experience

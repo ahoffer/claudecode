@@ -1,0 +1,25 @@
+# Expert configuration.
+# Each expert maps to an agent file at ~/.claude/agents/experts-{name}.md
+
+experts:
+  hickey:
+    lens: conceptual integrity
+    priority: 3
+  farley:
+    lens: behavior delivery
+    priority: 2
+  feathers:
+    lens: change safety
+    priority: 1
+  yegge:
+    lens: API ergonomics
+    priority: 4
+  esr:
+    lens: complexity veto
+    priority: 5
+
+modes:
+  review:
+    experts: all
+  design:
+    experts: [hickey, farley, esr]

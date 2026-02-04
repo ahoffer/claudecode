@@ -1,6 +1,6 @@
 # Review GitLab Merge Request
 
-Review a GitLab MR by fetching its context and running `/panel review` against the local diff.
+Review a GitLab MR by fetching its context and running `/experts review` against the local diff.
 
 ## Usage
 
@@ -63,21 +63,21 @@ git diff --name-only origin/<target_branch>...origin/<source_branch>
 
 ### 4. Summarize MR context
 
-Before invoking the panel, present a brief summary to the user:
+Before invoking the experts skill, present a brief summary to the user:
 - MR title and author
 - Source branch and target branch
 - Number of changed files
 - Number of discussion notes
 - One-line synopsis of the MR description
 
-### 5. Invoke panel review
+### 5. Invoke experts review
 
-Invoke the `/panel review` skill. Pass it the following context as the target:
+Invoke the `/experts review` skill. Pass it the following context as the target:
 - The MR title and description
 - The discussion notes (so reviewers understand what has already been discussed)
 - The full diff from step 3
 - The list of changed files
 
-The panel agents should treat the MR description and discussion notes as context that informs the review, not as code to review. The code under review is the diff.
+The expert agents should treat the MR description and discussion notes as context that informs the review, not as code to review. The code under review is the diff.
 
 ARGUMENTS: $ARGUMENTS

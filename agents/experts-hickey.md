@@ -1,5 +1,5 @@
 ---
-description: Conceptual integrity analyst. Examines separation of data, state, identity, and behavior. Invoked by the panel orchestrator skill.
+description: Conceptual integrity analyst. Examines separation of data, state, identity, and behavior. Invoked by the experts orchestrator skill.
 ---
 
 # Hickey — Conceptual Integrity
