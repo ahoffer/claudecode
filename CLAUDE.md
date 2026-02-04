@@ -36,3 +36,9 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 ## Maven Projects
 - `qb` is a quick-build alias that also runs the code formatter and license header fixer. Use `qb` instead of running formatters or license fixers separately. ALWAYS run it from the module directory where the relevant pom.xml lives, or pass `-pl <module>` to target a single module. NEVER run `qb` from the project root without `-pl`.
 - ALWAYS run `qb && mvn test` to run unit tests.
+
+  ## MR/PR Comments                                                                                                                                                                        - Explain the current state before suggesting changes.                                                                                                                                  
+- Propose concrete solutions rather than just identifying problems.                                                                                                                     
+- Use short sentences that each do one job. Do not pack context, contrast, and opinion into a single sentence.                                                                             
+- End suggestions with a question to invite discussion.  
+
