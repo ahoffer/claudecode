@@ -7,6 +7,7 @@
 - NEVER use numbered or bulleted lists in code comments. Write prose sentences instead.
 - NEVER use all caps in comments.
 - Names of methods, variables, and temps (not lambdas) must reveal why they exist, conveying purpose (`possibleMatch`) or purpose and type (`possibleMatchId`). Avoid mechanical names (`temp`, `result`, `data`, `val`).
+- ALWAYS use Unix line endings (LF). NEVER use Windows line endings (CRLF).
 
 ## Git
 - NEVER `git push` or create branches without user approval
@@ -37,8 +38,11 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 - `qb` is a quick-build alias that also runs the code formatter and license header fixer. Use `qb` instead of running formatters or license fixers separately. ALWAYS run it from the module directory where the relevant pom.xml lives, or pass `-pl <module>` to target a single module. NEVER run `qb` from the project root without `-pl`.
 - ALWAYS run `qb && mvn test` to run unit tests.
 
-  ## MR/PR Comments                                                                                                                                                                        - Explain the current state before suggesting changes.                                                                                                                                  
-- Propose concrete solutions rather than just identifying problems.                                                                                                                     
-- Use short sentences that each do one job. Do not pack context, contrast, and opinion into a single sentence.                                                                             
-- End suggestions with a question to invite discussion.  
+## MR/PR Comments
+- Explain the current state before suggesting changes.
+- Propose concrete solutions rather than just identifying problems.
+- Use short sentences that each do one job. Do not pack context, contrast, and opinion into a single sentence.
+- End suggestions with a question to invite discussion.
 
+## GitLab API
+- To access the GitLab API at gitlab.octo-cx-prod.runshiftup.com, pass `--header "PRIVATE-TOKEN: $GITLAB_BOT_READ_TOKEN"` with `-k` to skip cert validation. The `/api/v4/user` endpoint does not work with the bot token. To verify access, query `/api/v4/users?username=aaron.hoffer` instead.
