@@ -25,7 +25,7 @@
 - If an env var that looks like a credential, token, password, or secret resolves to an empty string, stop and alert the user. Suggest restarting with the var passed at launch and provide a copy-pasteable command, for example `GITLAB_BOT_READ_TOKEN=$GITLAB_BOT_READ_TOKEN claude`.
 
 ## Startup
-- Prefer Serena's tools when working with code
+- ALWAYS use Serena's tools when working with any kind of code or structured files
 
 ## Previous Conversations
 Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `~/.claude/projects/<project-path>/<session-id>.jsonl`, prompts in `~/.claude/history.jsonl`.
