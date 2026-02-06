@@ -64,3 +64,5 @@ modes:
     experts: [yegge, hickey, fowler, pike]
   ops:
     experts: [cantrill, farley, kleppmann]
+  requirements-review:
+    experts: [adzic, evans]

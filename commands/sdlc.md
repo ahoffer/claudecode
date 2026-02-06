@@ -13,16 +13,15 @@ Then scan the `.sdlc/` directory at the project root.
 Prompt the user to describe the work they want to do. Collect:
 1. **Feature name**: Short slug used as the directory name (for example `add-user-auth`, `fix-login-redirect`)
 2. **Description**: What needs to happen and why
-3. **Tier**: Propose a tier based on the description. Explain what each tier involves and let the user confirm or override.
 
 Then:
 - Create `.sdlc/<feature-name>/`
-- Create `state.md` with initial state (current phase set to the first phase for the selected tier)
+- Create `state.md` with initial state (current phase set to Requirements)
 - Begin the first phase per the process definition
 
 ### If `.sdlc/` has one active feature
 
-Read that feature's `state.md`. Summarize where things stand: current phase, tier, key decisions, any notes. Prompt:
+Read that feature's `state.md`. Summarize where things stand: current phase, key decisions, any notes. Prompt:
 - [1] Resume this feature
 - [2] Shelve this feature and start a new one
 - [3] Start a new feature (work on both)

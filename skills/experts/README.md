@@ -9,13 +9,16 @@ Experts and modes are configured in `config.yaml`. Each expert entry defines a n
 ```
 /experts review src/main/java/com/example/OrderService.java
 /experts design a retry mechanism for failed event deliveries
+/experts refactor the billing module
+/experts api the PaymentGateway interface
+/experts ops the notification service
 /experts                  # reviews whatever you've been discussing
 ```
 
 ## Modes
 
 ### Review (default)
-Analyzes existing code. All experts configured for review mode run in parallel.
+Analyzes existing code. All experts run in parallel.
 
 ```
 /experts review src/main/java/com/example/billing/InvoiceProcessor.java
@@ -25,7 +28,7 @@ Analyzes existing code. All experts configured for review mode run in parallel.
 Works best when you point it at a specific class, package, or interface. You can also use it after pasting code into the conversation.
 
 ### Design
-Shapes new work before you write it. Runs the experts configured for design mode. Other experts join only if there is existing code involved.
+Shapes new work before you write it. Runs hickey, farley, evans, kleppmann, and esr. Other experts join only if there is existing code involved.
 
 ```
 /experts design a circuit breaker for the notification service
@@ -33,6 +36,36 @@ Shapes new work before you write it. Runs the experts configured for design mode
 ```
 
 Works best when you describe the problem and constraints, not the solution.
+
+### Refactor
+Evaluates safe restructuring of existing code. Runs feathers, fowler, metz, beck, and pike.
+
+```
+/experts refactor the billing module
+/experts refactor OrderService and its collaborators
+```
+
+Works best when you already have working code and want to improve its structure without changing behavior.
+
+### API
+Reviews public interfaces and API surfaces. Runs yegge, hickey, fowler, and pike.
+
+```
+/experts api the PaymentGateway interface
+/experts api the REST endpoints in OrderController
+```
+
+Works best on interfaces, public APIs, and data models where early mistakes are expensive to fix.
+
+### Ops
+Assesses production readiness. Runs cantrill, farley, and kleppmann.
+
+```
+/experts ops the notification service
+/experts ops the event-driven order pipeline
+```
+
+Works best for evaluating debuggability, observability, and distributed systems trade-offs before shipping.
 
 ## Output Format
 
@@ -55,10 +88,28 @@ The skill stops early in two cases:
 - **ESR flags "unnecessary system"** — the orchestrator asks Hickey and Farley to propose the smallest viable structure, then stops. No point optimizing something that shouldn't exist.
 - **Feathers flags "unsafe to change"** — the orchestrator pauses feature work and outputs a stabilization plan first. No point designing new features on a foundation you can't safely modify.
 
+## Experts
+
+| Expert | Lens | Focus |
+|--------|------|-------|
+| hickey | conceptual integrity | Data, state, identity, and behavior separation |
+| farley | testable systems | Workflow clarity, test boundaries, observability |
+| feathers | change safety | Modification risk, seams, dependency weight |
+| fowler | refactoring vocabulary | Code smells, naming, design communication |
+| pike | clarity and restraint | Obviousness, orthogonality, earned complexity |
+| metz | practical composition | Object size, message flow, dependency direction |
+| beck | evolutionary simplicity | Four rules of simple design, TDD rhythm |
+| evans | domain modeling | Ubiquitous language, bounded contexts, aggregates |
+| adzic | traceable value | Requirements to goals, specification by example |
+| yegge | reader experience | Naming honesty, abstraction leaks, surprise factor |
+| cantrill | operational honesty | Debuggability, observability, failure modes |
+| kleppmann | honest trade-offs | Consistency models, replication, data flow |
+| esr | complexity veto | Problem reality, ceremony ratio, deletion candidates |
+
 ## Tips
 
 - **Be specific about scope.** `/experts review the checkout flow` is better than `/experts review everything`. The agents are most useful when focused on a bounded piece of code or a concrete design question.
 - **Combine with conversation context.** If you've been discussing a problem, `/experts` with no arguments reviews whatever is in context.
+- **Pick the right mode.** Use `design` before writing code, `refactor` before restructuring, `api` on public interfaces, and `ops` before shipping. Use `review` when you want all perspectives.
 - **Run it before big refactors.** The Feathers agent will identify the safest incremental path rather than a risky big-bang rewrite.
-- **Run it on interfaces, not just implementations.** The Yegge and Hickey agents are especially useful on API surfaces and data models where early mistakes are expensive to fix later.
 - **Design mode before coding.** Running `/experts design` before writing code is cheaper than running `/experts review` after.

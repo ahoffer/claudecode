@@ -34,23 +34,25 @@ All artifacts live in `.sdlc/` at the project root. Each feature gets its own su
 
 The `.sdlc/` directory should be in the project's `.gitignore`. These artifacts are disposable working documents, not deliverables.
 
-## Tiered Rigor
+## Expert Review by Phase
 
-Not all work needs the same ceremony. At the start of every feature, propose a tier and explain what it involves. The human confirms or overrides.
+The `/experts` skill provides structured multi-perspective analysis. Different phases benefit from different experts. Use `/experts <mode>` where the mode determines which experts run.
 
-### Tier 1 — Light
-**When**: Obvious bug fixes, small tweaks, well-understood changes with low risk.
-**Phases**: Implement > Verify
+| Phase | Mode | Experts | Focus |
+|-------|------|---------|-------|
+| Requirements | `requirements-review` | adzic, evans | Traceable value, domain alignment |
+| Design | `design` | hickey, evans, kleppmann, farley, esr | Conceptual integrity, domain modeling, trade-offs |
+| Verification | `review` | All code experts | Change safety, testability, complexity |
 
-### Tier 2 — Standard
-**When**: Typical features, non-trivial bugs, moderate scope.
-**Phases**: Requirements > Design > Verification Planning > Implement > Verify
+**When to run expert review:**
+- Run if the human requests it
+- Run if you are uncertain about quality
+- Always run at the Verification phase
 
-### Tier 3 — Full
-**When**: New subsystems, architectural changes, high-risk modifications.
-**Phases**: All phases with full artifacts and experts review.
-
-When proposing a tier, briefly explain why you're recommending it. For example: "I'd suggest Tier 2 — this touches multiple components and has non-obvious interaction effects, but it's not architectural."
+**How to invoke:**
+- Requirements phase: `/experts requirements-review` on the requirements artifact
+- Design phase: `/experts design` on the design artifact
+- Verification phase: `/experts review` on the implementation
 
 ---
 
@@ -75,13 +77,11 @@ Use AskUserQuestion to present these options. Wait for the human's response befo
 
 **Artifact**: `.sdlc/<feature>/requirements.md`
 
-**Content** (scales with tier):
+**Content**:
 - Problem statement or feature description
 - Acceptance criteria (observable, testable outcomes)
 - Constraints and assumptions
 - Out-of-scope items (what this work intentionally does not address)
-
-For Tier 1, requirements are implicit in the implementation task — skip this phase.
 
 **Your workflow**:
 1. Draft requirements based on the human's description. Ask clarifying questions if anything is ambiguous or underspecified.
@@ -107,12 +107,12 @@ Write the approved requirements to the artifact file.
 
 **Artifact**: `.sdlc/<feature>/design.md`
 
-**Content** (scales with tier):
+**Content**:
 - Approach summary (what changes, where, why)
 - Key design decisions with rationale
 - Affected files/components
 - Interface changes (if any)
-- Tier 3 only: component interaction diagrams, architectural quality attributes
+- For complex features: component interaction diagrams, architectural quality attributes
 
 **Your workflow**:
 1. Explore the codebase to understand current state. Use Serena's symbolic tools or the Explore agent to understand existing patterns and architecture.
@@ -145,8 +145,6 @@ For each requirement or design component, one of:
 - **No test needed**: Trivial, or covered by existing tests
 
 Include rationale for each decision and specific test scenarios (what to test, not test code).
-
-For Tier 1, verification planning is a quick mental check during implementation — skip the artifact.
 
 **Your workflow**:
 1. Examine each requirement and design component.
@@ -203,21 +201,21 @@ Write the approved strategy to the artifact file.
 - Design adherence check (does code match design decisions?)
 - Test results (all tests pass?)
 - Coding rules compliance
-- Tier 3 only: `/experts review` output
+- `/experts review` output
 
 **Your workflow**:
 1. Build the requirements coverage matrix. For each requirement, identify where in the code it's implemented and which test covers it.
 2. Check design adherence using adversarial framing: "What could be wrong? Where might the implementation differ from the design? What edge cases are missing?"
 3. Run all tests and report results.
 4. Assess coding rules compliance.
-5. For Tier 3: run `/experts review` on the implementation.
+5. Run `/experts review` on the implementation.
 6. Present the verification report.
 7. Prompt: [1] Approve — work is complete [2] Issues found — fix and re-verify [3] Needs rework in earlier phase
 
 **Quality checks — Review quality**:
 - Did you use adversarial framing? (The question is "what's wrong?" not "does this look good?")
 - Is cross-phase consistency confirmed? (Requirements > Design > Code > Tests all align)
-- For Tier 3: did the experts review surface anything the self-review missed?
+- Did the experts review surface anything the self-review missed?
 
 Write the verification report to the artifact file.
 
@@ -260,7 +258,6 @@ Each feature's `state.md` tracks progress for session continuity:
 # SDLC State
 - Feature: [feature name]
 - Description: [brief description]
-- Tier: [1/2/3]
 - Current phase: [phase name]
 - Last completed phase: [phase name or "none"]
 - Key decisions: [any decisions that affect remaining work]
@@ -299,7 +296,7 @@ You reviewing your own work is inherently limited. The SDLC makes this honest:
 1. **Checklist-driven**: Every phase has explicit quality checks. These are mechanical, not subjective — did you do X, yes or no.
 2. **Adversarial framing**: During verification, the question is "what's wrong?" not "does this look good?"
 3. **Cross-phase checking**: Each phase's artifact is reviewed against the previous phase's artifact. Requirements vs. design, design vs. code, code vs. tests.
-4. **Experts review for Tier 3**: The `/experts review` skill brings structured multi-perspective analysis for high-risk work.
+4. **Experts review**: The `/experts` skill brings structured multi-perspective analysis. Different modes apply to different phases.
 5. **Human as independent reviewer**: Every phase gate is a human decision point. You prepare the materials; the human judges.
 
 The human should understand that quality checks catch structural issues (missed requirements, design deviations, untested code paths) but cannot guarantee the code is correct. The human's domain knowledge and judgment at each gate is the real quality assurance.

@@ -46,3 +46,6 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 
 ## GitLab API
 - To access the GitLab API at gitlab.octo-cx-prod.runshiftup.com, pass `--header "PRIVATE-TOKEN: $GITLAB_BOT_READ_TOKEN"` with `-k` to skip cert validation. The `/api/v4/user` endpoint does not work with the bot token. To verify access, query `/api/v4/users?username=aaron.hoffer` instead.
+
+## Filename
+- AVOID hyphen, underscoresn and dots in executable filename because they make tab completion difficult

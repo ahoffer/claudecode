@@ -1,6 +1,6 @@
 ---
 name: experts
-description: Run the expert review panel for code review, refactoring, design, or API evaluation. Invoke with /experts followed by mode (review or design) and context.
+description: Run the expert review panel for code review, refactoring, design, API evaluation, or ops readiness. Invoke with /experts followed by a mode and context.
 user-invocable: true
 ---
 
@@ -21,6 +21,9 @@ If config.yaml is missing or unreadable, fall back to these defaults:
 
 **`/experts review [target]`** — Analyze existing code or design. Run every expert listed for the review mode in config.yaml.
 **`/experts design [description]`** — Shape new work. Run the experts listed for the design mode in config.yaml. Experts not in the design list join only if there is existing code to evaluate.
+**`/experts refactor [target]`** — Evaluate safe restructuring of existing code. Focuses on changeability, composition, and simplicity.
+**`/experts api [target]`** — Review public interfaces and API surfaces for clarity, consistency, and conceptual integrity.
+**`/experts ops [target]`** — Assess production readiness, debuggability, and distributed systems trade-offs.
 **`/experts [target]`** — Default to review mode.
 
 Arguments: $ARGUMENTS
