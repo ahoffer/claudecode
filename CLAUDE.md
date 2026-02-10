@@ -44,8 +44,11 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 - Use short sentences that each do one job. Do not pack context, contrast, and opinion into a single sentence.
 - End suggestions with a question to invite discussion.
 
-## GitLab API
-- To access the GitLab API at gitlab.octo-cx-prod.runshiftup.com, pass `--header "PRIVATE-TOKEN: $GITLAB_BOT_READ_TOKEN"` with `-k` to skip cert validation. The `/api/v4/user` endpoint does not work with the bot token. To verify access, query `/api/v4/users?username=aaron.hoffer` instead.
+## GitLab
+- ALWAYS use the helper scripts in ~/bin for GitLab access. NEVER manually construct curl commands to the GitLab API.
+- `glmr <mr-url>` fetches MR details, linked issues, and all comments. This is the go-to tool for reviewing merge requests.
+- `requestgitlab <web-url> [sub-resource]` translates GitLab web URLs to API endpoints. Handles URL encoding and authentication automatically.
+- Both scripts use `$GITLAB_BOT_READ_TOKEN` for authentication.
 
 ## Filename
 - AVOID hyphen, underscoresn and dots in executable filename because they make tab completion difficult
