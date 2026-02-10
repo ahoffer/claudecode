@@ -34,6 +34,20 @@ All artifacts live in `.sdlc/` at the project root. Each feature gets its own su
 
 The `.sdlc/` directory should be in the project's `.gitignore`. These artifacts are disposable working documents, not deliverables.
 
+## Artifact Versioning
+
+When revising an artifact, create a new version rather than editing in place. Use version numbers in filenames to preserve history.
+
+```
+.sdlc/
+  add-user-auth/
+    requirements-v1.md
+    requirements-v2.md    <- current version after revision
+    design-v1.md
+```
+
+This allows the human to compare versions and understand how the artifact evolved. Always work on the highest-numbered version. Reference the current version in `state.md`.
+
 ## Expert Review by Phase
 
 The `/experts` skill provides structured multi-perspective analysis. Different phases benefit from different experts. Use `/experts <mode>` where the mode determines which experts run.
