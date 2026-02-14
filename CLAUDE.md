@@ -51,4 +51,4 @@ Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `
 - Both scripts use `$GITLAB_BOT_READ_TOKEN` for authentication.
 
 ## Filename
-- AVOID hyphen, underscoresn and dots in executable filename because they make tab completion difficult
+- AVOID hyphen, underscores and dots in executable filename because they make tab completion difficult
