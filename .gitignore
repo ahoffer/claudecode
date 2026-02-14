@@ -2,7 +2,7 @@
 .credentials.json
 
 # Local/host-specific settings
-settings.local.json
+*.local.json
 .claude/
 
 # Conversation history (large, personal)
