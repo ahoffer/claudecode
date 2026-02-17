@@ -15,7 +15,7 @@
 - NEVER add AI attribution lines to commits
 
 ## Hosts
-- **tang**: docker (no buildx) | **bigfish**: nerdctl (not docker)
+- **tang**: nerdctl (rootless containerd + RKE2) | **bigfish**: nerdctl (not docker)
 
 ## Security
 - NEVER read ~/.bashrc, ~/.bash_profile, ~/.profile, or any shell rc/profile files. They contain secrets.

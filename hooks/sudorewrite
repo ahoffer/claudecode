@@ -1,0 +1,35 @@
+#!/bin/bash
+# PreToolUse hook for the Bash tool.
+# Rewrites sudo to sudo -A and sets SUDO_ASKPASS so the user can
+# approve each sudo operation via a graphical password dialog.
+
+input=$(cat)
+command=$(printf '%s' "$input" | jq -r '.tool_input.command // empty')
+
+# No command or no sudo, proceed unchanged
+if [[ -z "$command" ]] || ! grep -qw 'sudo' <<< "$command"; then
+    exit 0
+fi
+
+# Idempotent rewrite: normalize sudo [-A] to sudo -A
+updated=$(sed -E 's/sudo( +-A)?/sudo -A/g' <<< "$command")
+
+# Ensure SUDO_ASKPASS is set
+if ! grep -q 'SUDO_ASKPASS' <<< "$updated"; then
+    updated="SUDO_ASKPASS=/home/aaron/bin/sudoaskpass $updated"
+fi
+
+# If nothing actually changed, proceed unchanged
+if [[ "$updated" == "$command" ]]; then
+    exit 0
+fi
+
+jq -n --arg cmd "$updated" '{
+    hookSpecificOutput: {
+        hookEventName: "PreToolUse",
+        permissionDecision: "allow",
+        updatedInput: {
+            command: $cmd
+        }
+    }
+}'
