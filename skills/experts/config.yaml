@@ -1,68 +1,80 @@
-# Expert configuration.
-# Each expert maps to an agent file at ~/.claude/agents/experts-{name}.md
+# Dimension configuration.
+# Each dimension absorbs the best analytical questions from the experts it replaces.
+# Adversarial agents are defined separately and always run in pairs.
 
-experts:
-  # Structural clarity
-  hickey:
-    lens: conceptual integrity
-    priority: 3
-  pike:
-    lens: clarity and restraint
-    priority: 6
-  metz:
-    lens: practical composition
-    priority: 7
+dimensions:
+  structural-clarity:
+    focus: data/state separation, naming, object boundaries, orthogonality
+    questions:
+      - Where is mutable state mixed with data that should be values? Are identity and data properly separated?
+      - Do names say exactly what things are and do? Is vocabulary missing where a concept deserves a name?
+      - Is each object small enough to understand with one reason to change? Are responsibilities cleanly bounded?
+      - Are concepts mixed that should be independent? Do features compose cleanly or interact in surprising ways?
+      - Could core abstractions be expressed as plain data with explicit transformations rather than objects with methods?
 
-  # Changeability
-  feathers:
-    lens: change safety
-    priority: 4
-  fowler:
-    lens: refactoring vocabulary
-    priority: 5
-  beck:
-    lens: evolutionary simplicity
-    priority: 8
+  changeability:
+    focus: modification safety, seams, test coverage, dependency weight
+    questions:
+      - Which parts are difficult to change without unintended consequences? Where do hidden dependencies cause ripple effects?
+      - Are there natural seams where behavior can be substituted for testing? Can dependencies be replaced without modifying production code?
+      - What behavior is untested or difficult to test? Where would a bug hide longest before being caught?
+      - Are dependencies heavy or light? Can modules be extracted and tested in isolation?
+      - Is there premature abstraction, generality not demanded by concrete uses, or extension points nothing extends?
 
-  # Domain alignment
-  evans:
-    lens: domain modeling
-    priority: 9
-  adzic:
-    lens: traceable value
-    priority: 13
+  domain-alignment:
+    focus: ubiquitous language, bounded contexts, traceable value
+    questions:
+      - Where does code terminology diverge from how domain experts talk? Are there synonyms that create confusion?
+      - Are concepts from different contexts bleeding into each other? Should multiple distinct models exist?
+      - Can you trace this code back to a business capability or user goal? Or is it technical work disconnected from why it matters?
+      - Are acceptance criteria concrete enough to be automated? Could two developers interpret the requirement differently?
+      - Do tests express business rules in domain terms, or do they test technical details that obscure the actual requirement?
 
-  # API and reader experience
-  yegge:
-    lens: reader experience
-    priority: 10
+  operational-readiness:
+    focus: testability, observability, debuggability, distributed trade-offs
+    questions:
+      - Can you trace the path from input to outcome? Are side effects isolated behind boundaries you can substitute in tests?
+      - When this code misbehaves, what tools and information exist to understand why? Are the right metrics, logs, and traces in place?
+      - When something fails, does the error tell you what went wrong or obscure the cause behind abstraction layers?
+      - What consistency model does this code assume? Is the assumption correct given the underlying systems?
+      - What happens when a network call fails, times out, or returns stale data? Are partial failures handled?
 
-  # Operational
-  farley:
-    lens: testable systems
-    priority: 2
-  cantrill:
-    lens: operational honesty
-    priority: 11
-  kleppmann:
-    lens: honest trade-offs
-    priority: 12
+  api-surface:
+    focus: naming honesty, abstraction leaks, consistency
+    questions:
+      - Do names say what they mean? Are there misleading names, abbreviations that cost comprehension, or generic names that hide purpose?
+      - Does the API expose implementation details the caller should not need to know? Do you have to understand internals to use it correctly?
+      - Is there behavior that would surprise a competent developer reading this for the first time? Hidden side effects, non-obvious ordering, magic values?
+      - How many levels of indirection exist between entry point and actual work? Is each layer earning its existence?
+      - Does similar work get done in similar ways? Or do equivalent operations use different patterns in different places?
 
-  # Simplicity check (always last)
-  esr:
-    lens: complexity veto
-    priority: 1
+  simplicity:
+    focus: problem reality, ceremony ratio, deletion candidates
+    questions:
+      - Is this solving an actual problem someone has, or a hypothetical future problem? Is complexity proportional to the problem's difficulty?
+      - How much of this code is actual logic vs. framework wiring, configuration, boilerplate, or structural overhead?
+      - What can be removed without losing capability? Unused abstractions, defensive code for impossible cases, layers that only delegate?
+      - Can you explain what this does in one or two sentences? If not, the design is probably wrong.
+      - Are there design patterns applied as ritual rather than in response to actual forces?
+
+adversarial:
+  advocate:
+    agent: experts-advocate
+    role: defends current code, argues for preservation
+  challenger:
+    agent: experts-challenger
+    role: argues for change, proposes concrete actions
 
 modes:
   review:
-    experts: all
+    dimensions: all
   design:
-    experts: [hickey, farley, evans, kleppmann, esr]
+    dimensions: [structural-clarity, domain-alignment, operational-readiness, simplicity]
   refactor:
-    experts: [feathers, fowler, metz, beck, pike]
+    dimensions: [structural-clarity, changeability, simplicity]
   api:
-    experts: [yegge, hickey, fowler, pike]
+    dimensions: [api-surface, structural-clarity, simplicity]
   ops:
-    experts: [cantrill, farley, kleppmann]
+    dimensions: [operational-readiness, changeability]
   requirements-review:
-    experts: [adzic, evans]
+    dimensions: [domain-alignment, simplicity]

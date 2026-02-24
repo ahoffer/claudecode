@@ -6,56 +6,74 @@ user-invocable: true
 
 # Expert Panel Orchestrator
 
-You coordinate analytical agents and synthesize their findings into a single actionable recommendation.
+You analyze code through structured analytical dimensions and then launch adversarial agents to debate the findings.
 
 ## Configuration
 
-Read `~/.claude/skills/experts/config.yaml` to determine which experts exist, their lenses, their conflict resolution priorities, and which experts run in each mode. Each expert maps to an agent file at `~/.claude/agents/experts-{name}.md`.
-
-If config.yaml is missing or unreadable, fall back to these defaults:
-- **Experts**: feathers (change safety, priority 1), farley (behavior delivery, priority 2), hickey (conceptual integrity, priority 3), yegge (API ergonomics, priority 4), esr (complexity veto, priority 5).
-- **Review mode**: all experts.
-- **Design mode**: hickey, farley, esr. Other experts join only if there is existing code to evaluate.
+Read `~/.claude/skills/experts/config.yaml` to determine which dimensions apply to each mode, their analytical questions, and the adversarial agent definitions.
 
 ## Modes
 
-**`/experts review [target]`** — Analyze existing code or design. Run every expert listed for the review mode in config.yaml.
-**`/experts design [description]`** — Shape new work. Run the experts listed for the design mode in config.yaml. Experts not in the design list join only if there is existing code to evaluate.
-**`/experts refactor [target]`** — Evaluate safe restructuring of existing code. Focuses on changeability, composition, and simplicity.
-**`/experts api [target]`** — Review public interfaces and API surfaces for clarity, consistency, and conceptual integrity.
-**`/experts ops [target]`** — Assess production readiness, debuggability, and distributed systems trade-offs.
-**`/experts [target]`** — Default to review mode.
+**`/experts review [target]`** - Analyze existing code. All dimensions.
+**`/experts design [description]`** - Shape new work. Structural clarity, domain alignment, operational readiness, simplicity.
+**`/experts refactor [target]`** - Evaluate safe restructuring. Structural clarity, changeability, simplicity.
+**`/experts api [target]`** - Review public interfaces. API surface, structural clarity, simplicity.
+**`/experts ops [target]`** - Assess production readiness. Operational readiness, changeability.
+**`/experts requirements-review [target]`** - Review requirements. Domain alignment, simplicity.
+**`/experts [target]`** - Default to review mode.
 
 Arguments: $ARGUMENTS
 
 ## Execution
 
-1. Identify the target code or design from the arguments and conversation context
-2. Read config.yaml to determine which experts to invoke for the selected mode
-3. Delegate to each expert agent using the Task tool. Run all applicable agents **in parallel** for speed. Pass each agent the relevant code, file paths, and context.
-4. Collect all agent responses
-5. Synthesize using the output format and conflict resolution rules below
+### Phase 1: Dimensional Analysis (single pass, no fan-out)
 
-## Short-Circuit Rules
+1. Identify the target code or design from the arguments and conversation context.
+2. Read config.yaml to determine which dimensions apply for the selected mode.
+3. Analyze the target through each applicable dimension yourself in a single pass. For each dimension, work through its 5 analytical questions. Produce 3-5 findings per dimension. Each finding states the issue, where it occurs, and a concrete correction.
 
-- If ESR flags "unnecessary system" (the thing being built adds no real value), pause other analysis. Ask Hickey and Farley to propose the smallest viable structure, then stop.
-- If Feathers identifies "unsafe to change" (no seams, no tests, tight coupling), pause feature work. Output a stabilization plan before proceeding with any design work.
+Do NOT launch separate Task agents for this phase. You perform the dimensional analysis directly.
 
-## Conflict Resolution
+### Short-Circuit Check
 
-Use the priority field from config.yaml, lower number wins. When agents disagree, the agent with the lower priority number prevails.
+After completing the dimensional analysis, check these conditions before proceeding:
 
-Exception: if ESR identifies pure ceremony with no user-visible value, ESR overrides unless it would reduce change safety.
+- **If simplicity flags "unnecessary system"** (the thing being built adds no real value): stop and propose the minimal viable structure. Do not proceed to the adversarial phase.
+- **If changeability flags "unsafe to change"** (no seams, no tests, tight coupling): output a stabilization plan first. Do not proceed to the adversarial phase until the stabilization path is clear.
+
+If a short-circuit fires, skip Phase 2 and go directly to output with the short-circuit finding as the verdict.
+
+### Phase 2: Adversarial Debate (parallel Task agents)
+
+Launch exactly 2 Task agents in parallel using the Task tool:
+
+1. **Advocate** (`~/.claude/agents/experts-advocate.md`): Pass the dimensional findings. The advocate defends the current code and argues for preservation. Instruct it to return 3-5 structured argument points.
+2. **Challenger** (`~/.claude/agents/experts-challenger.md`): Pass the dimensional findings. The challenger argues for change and proposes concrete actions. Instruct it to return 3-5 structured argument points.
+
+Both agents must run in parallel so neither biases the other. Wait for both to complete before proceeding.
+
+### Phase 3: Synthesis
+
+Combine dimensional findings with adversarial arguments into the output format below.
 
 ## Required Output Format
 
-After collecting agent findings, produce this structure:
+### Dimensions
 
-### Findings
-One subsection per agent that ran. Max 5 bullets each. Use the agent's name as the heading. Present each agent's findings in their analytical voice without editorializing.
+One subsection per dimension that ran. Max 5 findings each. Use the dimension name as the heading. State findings directly without editorializing.
+
+### Advocate
+
+Present the advocate's 3-5 argument points as returned.
+
+### Challenger
+
+Present the challenger's 3-5 argument points as returned.
 
 ### Verdict
-Open with a one-sentence statement of what was analyzed and any assumptions. Then state what to do, what not to do, and explicit tradeoffs. Apply the conflict resolution rules here.
+
+Open with a one-sentence statement of what was analyzed and any assumptions. Then state what to do, what not to do, and explicit tradeoffs. Where advocate and challenger disagree, take a position and explain why.
 
 ### Plan or Code
+
 Include this section only when warranted. For stabilization paths, multi-step refactors, or design work, provide ordered steps with rationale. For requested code changes, provide the diff with a verification checklist. Omit entirely if the verdict is self-contained.

@@ -38,11 +38,11 @@ The `.sdlc/` directory should be in the project's `.gitignore`. These artifacts 
 
 The `/experts` skill provides structured multi-perspective analysis. Different phases benefit from different experts. Use `/experts <mode>` where the mode determines which experts run.
 
-| Phase | Mode | Experts | Focus |
-|-------|------|---------|-------|
-| Requirements | `requirements-review` | adzic, evans | Traceable value, domain alignment |
-| Design | `design` | hickey, evans, kleppmann, farley, esr | Conceptual integrity, domain modeling, trade-offs |
-| Verification | `review` | All code experts | Change safety, testability, complexity |
+| Phase | Mode | Dimensions | Focus |
+|-------|------|------------|-------|
+| Requirements | `requirements-review` | domain-alignment, simplicity | Traceable value, domain alignment |
+| Design | `design` | structural-clarity, domain-alignment, operational-readiness, simplicity | Conceptual integrity, domain modeling, trade-offs |
+| Verification | `review` | All 6 dimensions + adversarial debate | Change safety, testability, complexity |
 
 **When to run expert review:**
 - Run if the human requests it
