@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/aaron/.claude/hooks/sudorewrite"
+            "command": "~/.claude/hooks/sudorewrite"
           }
         ]
       }
