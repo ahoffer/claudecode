@@ -27,9 +27,6 @@
 ## Startup
 - ALWAYS use Serena's tools when working with any kind of code or structured files
 
-## Previous Conversations
-Look for `.claude/` folders from cwd upward, then `~/.claude/`. Transcripts in `~/.claude/projects/<project-path>/<session-id>.jsonl`, prompts in `~/.claude/history.jsonl`.
-
 ## Coding Rules
 - When writing or modifying code in any language, follow the rules in `~/.claude/coding-rules.md`
 - When writing or modifying Java 17+ code, also follow `~/.claude/java-rules.md`

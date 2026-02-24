@@ -16,14 +16,14 @@ When this skill is invoked, follow these steps in order.
 
 Extract from the argument URL:
 - **Host** (for example `gitlab.octo-cx-prod.runshiftup.com`)
-- **Project path** (for example `octo-cx/cx/cx-search`), then URL-encode slashes as `%2F`
+- **Source branch** and **target branch**
 - **MR IID** (the number at the end)
 
 If no URL is provided or the URL does not look like a GitLab MR, ask the user for one.
 
-### 2. Fetch MR details from GitLab API
+### 2. Fetch MR details
 
-First, verify the token is available by checking `$GITLAB_BOT_READ_TOKEN` is non-empty:
+First, verify the token is available:
 ```bash
 test -n "$GITLAB_BOT_READ_TOKEN" && echo "ok" || echo "empty"
 ```
@@ -32,20 +32,12 @@ If the token is empty, stop immediately and tell the user:
 > `GITLAB_BOT_READ_TOKEN` is not set. Restart with it passed at launch, for example:
 > `GITLAB_BOT_READ_TOKEN=$GITLAB_BOT_READ_TOKEN claude`
 
-If the token is present, fetch the MR metadata first:
+If the token is present, use `glmr` to fetch MR metadata, linked issues, and all comments:
 ```bash
-curl -s -w "\nHTTP_CODE:%{http_code}" --header "PRIVATE-TOKEN: $GITLAB_BOT_READ_TOKEN" "https://<host>/api/v4/projects/<encoded-path>/merge_requests/<iid>"
+~/bin/glmr <gitlab-mr-url>
 ```
 
-Check the HTTP status code. If it is not 200, stop and report the error to the user with the status code and response body. Common causes: 401 means bad token, 404 means wrong project path or MR number.
-
-Only after the metadata call succeeds, fetch the notes:
-```bash
-curl -s --header "PRIVATE-TOKEN: $GITLAB_BOT_READ_TOKEN" "https://<host>/api/v4/projects/<encoded-path>/merge_requests/<iid>/notes?per_page=100&sort=asc"
-```
-
-From the metadata, extract: title, description, source_branch, target_branch, author, state, web_url.
-From the notes, extract all human-authored notes, ignoring system notes. Keep the author and body of each.
+From the output, extract: title, description, source_branch, target_branch, author, state, and all human-authored discussion notes.
 
 ### 3. Prepare the local diff
 

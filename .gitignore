@@ -3,7 +3,7 @@
 
 # Local/host-specific settings
 *.local.json
-.claude/
+keybindings.json
 
 # Conversation history (large, personal)
 history.jsonl

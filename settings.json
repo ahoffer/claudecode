@@ -9,7 +9,6 @@
       "WebFetch",
       "WebSearch",
       "Task",
-      "TodoWrite",
       "mcp__plugin_serena_serena__*",
       "Bash(*)"
     ],
