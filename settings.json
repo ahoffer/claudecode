@@ -34,7 +34,7 @@
   },
   "enabledPlugins": {
     "serena@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": false,
     "explanatory-output-style@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
