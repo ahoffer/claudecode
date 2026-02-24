@@ -35,6 +35,12 @@ plugins/
 # Memories (host-specific runtime state)
 memories/
 
+# MCP auth cache
+mcp-needs-auth-cache.json
+
+# Backups (auto-generated)
+backups/
+
 # MCP servers (cloned repos with their own git history)
 # Document which servers to install in README
 mcp-servers/

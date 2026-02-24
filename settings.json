@@ -18,7 +18,7 @@
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~*)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "plan"
   },
   "hooks": {
     "PreToolUse": [
@@ -36,7 +36,7 @@
   "enabledPlugins": {
     "serena@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true
+    "explanatory-output-style@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true
