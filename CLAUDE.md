@@ -26,6 +26,7 @@
 
 ## Startup
 - ALWAYS use Serena's tools when working with any kind of code or structured files
+- On startup, call `check_onboarding_performed` to see if Serena is activated for the current project. If onboarding was not performed, ask the user whether to activate and onboard Serena for this project.
 
 ## Coding Rules
 - When writing or modifying code in any language, follow the rules in `~/.claude/coding-rules.md`
