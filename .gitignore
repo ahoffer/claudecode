@@ -28,6 +28,7 @@ todos/
 stats-cache.json
 *.tmp
 *.log
+*.sync-conflict-*
 
 # Plugin state (generated, host-specific)
 plugins/
@@ -47,6 +48,9 @@ mcp-servers/
 
 # IDE integration (auto-generated lock files)
 ide/
+
+# Syncthing metadata (generated)
+.stfolder/
 
 # OS files
 .DS_Store
