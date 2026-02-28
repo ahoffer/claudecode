@@ -45,6 +45,9 @@ backups/
 # Document which servers to install in README
 mcp-servers/
 
+# IDE integration (auto-generated lock files)
+ide/
+
 # OS files
 .DS_Store
 Thumbs.db

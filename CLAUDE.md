@@ -45,7 +45,7 @@
 ## GitLab
 - ALWAYS use the helper scripts in ~/bin for GitLab access. NEVER manually construct curl commands to the GitLab API.
 - `glmr <mr-url>` fetches MR details, linked issues, and all comments. This is the go-to tool for reviewing merge requests.
-- `requestgitlab <web-url> [sub-resource]` translates GitLab web URLs to API endpoints. Handles URL encoding and authentication automatically.
+- `glapi <web-url> [sub-resource]` translates GitLab web URLs to API endpoints. Handles URL encoding and authentication automatically.
 - Both scripts use `$GITLAB_BOT_READ_TOKEN` for authentication.
 
 ## Filename
