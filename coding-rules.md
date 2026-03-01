@@ -31,3 +31,4 @@ Apply these rules when writing or modifying code in any language.
 ## Testing
 - Test behavior over pure functions and public APIs
 - Minimize mocks; prefer fakes/in-memory implementations at boundaries
+- Favor clarity and simplicity over exhaustive coverage or pedantic detail
