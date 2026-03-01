@@ -1,3 +1,6 @@
+# Data Sharing Constraint
+- The user is NOT permitted to allow data sent through Claude Code to be used for model training. Do not suggest opting in to any data sharing, feedback, or training program. If asked, remind the user of this constraint.
+
 # Global Claude Code Preferences
 
 ## Style
