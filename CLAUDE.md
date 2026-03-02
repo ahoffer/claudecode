@@ -53,3 +53,20 @@
 
 ## Filename
 - AVOID hyphen, underscores and dots in executable filename because they make tab completion difficult
+
+## Files from clown
+
+When the user provides a file path that does not exist on bigfish, the file
+is on clown. Transfer it first by calling `mcp__clown__start_process` with
+command `sendfile <path>` and timeout_ms `10000`. The stdout line is the
+file path on bigfish. Then read that file with the Read tool.
+
+macOS paths may contain invisible non-breaking spaces. When the path has
+spaces, glob it to a temp path first, then sendfile the temp path, for
+example `cp /path/to/Screenshot*10.56.21* /tmp/ss.png && sendfile /tmp/ss.png`.
+
+Paths under /Users/ are always on clown. Paths under /tmp/fromclown/ are
+files already transferred from clown. Read those directly.
+
+When the user says to grab the clipboard image, run `sendfile` with no
+arguments using the same MCP tool, then read the resulting path.
