@@ -1,5 +1,5 @@
 # Data Sharing Constraint
-- The user is NOT permitted to allow data sent through Claude Code to be used for model training. Do not suggest opting in to any data sharing, feedback, or training program. If asked, remind the user of this constraint.
+Never suggest opting in to data sharing, feedback, or model training. Remind the user this is not permitted if asked.
 
 # Global Claude Code Preferences
 
@@ -18,8 +18,7 @@
 - NEVER add AI attribution lines to commits
 
 ## Hosts
-- **bigfish**: nerdctl
-- On bigfish, `~/.claude` is the source of truth and git repo for Claude config, and `~/.codex` is the source of truth and git repo for Codex config.
+- **bigfish**: uses nerdctl. `~/.claude` and `~/.codex` are the git repos for Claude and Codex config.
 
 ## Security
 - NEVER read ~/.bashrc, ~/.bash_profile, ~/.profile, or any shell rc/profile files. They contain secrets.
@@ -57,17 +56,10 @@
 
 ## Files from clown
 
-When the user provides a file path that does not exist on bigfish, the file
-is on clown. Transfer it first by calling `mcp__clown__start_process` with
-command `sendfile <path>` and timeout_ms `10000`. The stdout line is the
-file path on bigfish. Then read that file with the Read tool.
+Paths under /Users/ are on clown. Paths under /tmp/fromclown/ are already transferred; read them directly.
 
-macOS paths may contain invisible non-breaking spaces. When the path has
-spaces, glob it to a temp path first, then sendfile the temp path, for
-example `cp /path/to/Screenshot*10.56.21* /tmp/ss.png && sendfile /tmp/ss.png`.
+To transfer: call `mcp__clown__start_process` with command `sendfile <path>` and timeout_ms 10000. The stdout line is the path on bigfish. Then read that file.
 
-Paths under /Users/ are always on clown. Paths under /tmp/fromclown/ are
-files already transferred from clown. Read those directly.
+macOS paths may have invisible non-breaking spaces. Glob to a temp path first: `cp /path/to/Screenshot*10.56.21* /tmp/ss.png && sendfile /tmp/ss.png`.
 
-When the user says to grab the clipboard image, run `sendfile` with no
-arguments using the same MCP tool, then read the resulting path.
+To grab the clipboard image: call `mcp__clown__start_process` with command `sendfile` (no args) and timeout_ms 10000.

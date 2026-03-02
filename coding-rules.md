@@ -11,7 +11,8 @@ Apply these rules when writing or modifying code in any language.
 ## Data
 - Prefer small, focused data carriers over rich "everything objects"
 - Keep mutation rare; prefer immutable structures; if mutating, keep it localized and document ownership
-- Maps/dicts are harder to reason about than typed objects or primitives; every map declaration must have a comment explaining why the map is important to the work of the function or class; prefer a typed object when modeling structured data
+- Prefer typed objects over maps/dicts for structured data
+- Every map declaration must have a comment explaining why the map serves the function's purpose better than a typed object
 
 ## Abstraction
 - New type/interface only if reused, enforces a real invariant, isolates a volatile dependency, or improves testing meaningfully
