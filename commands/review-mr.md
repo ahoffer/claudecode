@@ -16,7 +16,6 @@ When this skill is invoked, follow these steps in order.
 
 Extract from the argument URL:
 - **Host** (for example `gitlab.octo-cx-prod.runshiftup.com`)
-- **Source branch** and **target branch**
 - **MR IID** (the number at the end)
 
 If no URL is provided or the URL does not look like a GitLab MR, ask the user for one.
@@ -32,12 +31,13 @@ If the token is empty, stop immediately and tell the user:
 > `GITLAB_BOT_READ_TOKEN` is not set. Restart with it passed at launch, for example:
 > `GITLAB_BOT_READ_TOKEN=$GITLAB_BOT_READ_TOKEN claude`
 
-If the token is present, use `glmr` to fetch MR metadata, linked issues, and all comments:
+If the token is present, use `gl api get --raw` to fetch the MR JSON and `gl api mr` for the human-readable summary:
 ```bash
-~/bin/glmr <gitlab-mr-url>
+~/bin/gl api get --raw <gitlab-mr-url>
+~/bin/gl api mr <gitlab-mr-url>
 ```
 
-From the output, extract: title, description, source_branch, target_branch, author, state, and all human-authored discussion notes.
+From the JSON and summary output, extract: title, description, source_branch, target_branch, author, state, and all human-authored discussion notes.
 
 ### 3. Prepare the local diff
 
