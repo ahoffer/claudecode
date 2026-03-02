@@ -18,7 +18,8 @@
 - NEVER add AI attribution lines to commits
 
 ## Hosts
-- **tang**: nerdctl (rootless containerd + RKE2) | **bigfish**: nerdctl (not docker)
+- **bigfish**: nerdctl
+- On bigfish, `~/.claude` is the source of truth and git repo for Claude config, and `~/.codex` is the source of truth and git repo for Codex config.
 
 ## Security
 - NEVER read ~/.bashrc, ~/.bash_profile, ~/.profile, or any shell rc/profile files. They contain secrets.
