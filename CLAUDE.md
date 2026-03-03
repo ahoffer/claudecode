@@ -62,8 +62,8 @@ Never suggest opting in to data sharing, feedback, or model training. Remind the
 
 Paths under /Users/ are on clown. Paths under /tmp/fromclown/ are already transferred; read them directly.
 
-To transfer: call `mcp__clown__start_process` with command `sendfile <path>` and timeout_ms 10000. The stdout line is the path on bigfish. Then read that file.
+To transfer: call `mcp__desktop-commander__start_process` with command `sendfile <path>` and timeout_ms 10000. The stdout line is the path on bigfish. Then read that file.
 
 macOS paths may have invisible non-breaking spaces. Glob to a temp path first: `cp /path/to/Screenshot*10.56.21* /tmp/ss.png && sendfile /tmp/ss.png`.
 
-To grab the clipboard image: call `mcp__clown__start_process` with command `sendfile` (no args) and timeout_ms 10000.
+To grab the clipboard image: call `mcp__desktop-commander__start_process` with command `sendfile` (no args) and timeout_ms 10000.

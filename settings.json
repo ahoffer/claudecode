@@ -16,7 +16,7 @@
       "WebSearch",
       "Task",
       "mcp__plugin_serena_serena__*",
-      "mcp__clown__*",
+      "mcp__desktop-commander__*",
       "Bash(*)"
     ],
     "deny": [
