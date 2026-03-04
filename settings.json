@@ -35,6 +35,14 @@
             "command": "~/.claude/ccnotifier-hook.sh"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/tracksession"
+          }
+        ]
       }
     ],
     "PreToolUse": [

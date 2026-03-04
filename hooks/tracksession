@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# SessionStart hook. Saves Claude session id and cwd for the current tmux pane.
+# Written to ~/.claude/tmux-sessions/$TMUX_PANE so clresume can offer it later.
+# Does nothing if not running inside tmux.
+#
+# Payload fields tried in order: session_id, sessionId (both spellings seen in practice).
+# cwd is included so clresume can display context. File is overwritten on each start.
+set -euo pipefail
+
+if [[ -z "${TMUX_PANE:-}" ]]; then
+    exit 0
+fi
+
+paneDir="$HOME/.claude/tmux-sessions"
+mkdir -p "$paneDir"
+
+payload=$(cat)
+
+savedId=$(printf '%s' "$payload" \
+    | jq -re '.session_id // .sessionId // empty' 2>/dev/null) || true
+
+[[ -z "$savedId" ]] && exit 0
+
+savedCwd=$(printf '%s' "$payload" \
+    | jq -re '.cwd // empty' 2>/dev/null) || true
+
+printf '%s\t%s\n' "$savedId" "${savedCwd:-}" > "$paneDir/$TMUX_PANE"
