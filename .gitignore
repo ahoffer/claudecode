@@ -57,3 +57,6 @@ ide/
 Thumbs.db
 /.idea/
 /.claude.iml
+
+# Tmux session tracking (runtime state)
+tmux-sessions/
