@@ -17,7 +17,6 @@ image-cache/
 paste-cache/
 plans/
 projects/
-session-env/
 shell-snapshots/
 statsig/
 tasks/
@@ -59,4 +58,3 @@ Thumbs.db
 /.claude.iml
 
 # Tmux session tracking (runtime state)
-tmux-sessions/
