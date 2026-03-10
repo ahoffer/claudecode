@@ -1,69 +1,50 @@
 # Data Sharing Constraint
-Never suggest opting in to data sharing, feedback, or model training. Remind the user this is not permitted if asked.
+Never suggest opting in to data sharing, feedback, or model training. If asked, say this is not permitted.
 
 # Global Claude Code Preferences
 
+## Keep It Tight
+- Be concise. Prefer direct prose over long lists unless structure clearly helps.
+- Avoid verbose restatement of the request or plan.
+- Prefer `for example` over `e.g.`
+- Use LF line endings.
+
 ## Style
-- Prefer "for example" over "e.g."
-- Avoid punctuation other than commas and periods in comments and documents. Avoid parentheses, colons, dashes, and such.
-- Normal sentence case in code comments. Elide articles and prepositions.
-- NEVER use numbered or bulleted lists in code comments. Write prose sentences instead.
-- NEVER use all caps in comments.
-- Names of methods, variables, and temps (not lambdas) must reveal why they exist, conveying purpose (`possibleMatch`) or purpose and type (`possibleMatchId`). Avoid mechanical names (`temp`, `result`, `data`, `val`).
-- ALWAYS use Unix line endings (LF). NEVER use Windows line endings (CRLF).
+- In comments and docs, use sentence case and plain punctuation.
+- Name methods, variables, and temps by purpose, not mechanics.
 
 ## Git
-- NEVER `git push` or create branches without user approval
-- ALWAYS wait for user confirmation before committing
-- NEVER add AI attribution lines to commits
-
-## Hosts
-- **bigfish**: uses nerdctl. `~/.claude` and `~/.codex` are the git repos for Claude and Codex config.
-- NEVER install claude or codex on host clown.
+- Never `git push`.
+- Wait for user confirmation before committing.
+- Never add AI attribution lines to commits.
 
 ## Security
-- NEVER read ~/.bashrc, ~/.bash_profile, ~/.profile, or any shell rc/profile files. They contain secrets.
-- NEVER run `env`, `printenv`, `set`, `export -p`, `declare -p`, or any command that dumps all environment variables.
-- Always pass env vars by reference using `$VAR_NAME`. Never expand, echo, print, log, or write their resolved values to files, output, or commands. If you need to discover the name of an env var, ask the user.
-- The GitLab read token env var is `$GITLAB_BOT_READ_TOKEN`.
-- The GitLab write token env var is `$GITLAB_WRITE_TOKEN`.
-- If an env var that looks like a credential, token, password, or secret resolves to an empty string, stop and alert the user. Suggest restarting with the var passed at launch and provide a copy-pasteable command, for example `GITLAB_BOT_READ_TOKEN=$GITLAB_BOT_READ_TOKEN claude`.
+- Never read shell rc or profile files in `~`.
+- Never dump all environment variables with commands like `env`, `printenv`, `set`, `export -p`, or `declare -p`.
+- Pass env vars by reference like `$VAR_NAME`. Never print resolved secret values.
+- If a required secret env var is empty, stop and tell the user to restart with it passed at launch.
 
-## Startup
-- ALWAYS use Serena's tools when working with any kind of code or structured files
-- On startup, call `check_onboarding_performed` to see if Serena is activated for the current project. If onboarding was not performed, ask the user whether to activate and onboard Serena for this project.
+## Environment
+- `bigfish` is the main host for `~/.claude` and `~/.codex`.
+- Never install claude or codex on `clown`.
+- Paths under `/Users/` are on `clown`. Paths under `/tmp/fromclown/` are already transferred and safe to read directly.
+- To transfer a file from `clown`, use `sendfile <path>`. To grab the clipboard image, use `sendfile` with no args.
 
-## Coding Rules
-- When writing or modifying code in any language, follow the rules in `~/.claude/coding-rules.md`
-- When writing or modifying Java 17+ code, also follow `~/.claude/java-rules.md`
+## Tools
+- Use Serena for code and structured file work. Check onboarding first.
+- For GitLab, use `~/bin/gl`. Run `gl doctor` when validating helper readiness.
+- Use `gl api` for API reads, `gl git ro` for read-only Git transport, and `gl git rw` only for explicit write flows.
 
-## Maven Projects
-- `qb` is a quick-build alias that also runs the code formatter and license header fixer. Use `qb` instead of running formatters or license fixers separately. ALWAYS run it from the module directory where the relevant pom.xml lives, or pass `-pl <module>` to target a single module. NEVER run `qb` from the project root without `-pl`.
-- ALWAYS run `qb && mvn test` to run unit tests.
+## Build And Test
+- Follow `~/.claude/coding-rules.md` for all code changes.
+- Follow `~/.claude/java-rules.md` for Java 17+ work.
+- In Maven modules, use `qb` for builds and formatting.
+- Use Maven for tests. Standard flow is `qb && mvn test`.
 
-## MR/PR Comments
-- Explain the current state before suggesting changes.
-- Propose concrete solutions rather than just identifying problems.
-- Use short sentences that each do one job. Do not pack context, contrast, and opinion into a single sentence.
-- End suggestions with a question to invite discussion.
+## Writing
+- Explain current state before suggesting changes.
+- Keep suggestions concrete and short.
+- End review suggestions with a question when discussion is useful.
 
-## GitLab
-- ALWAYS use the helper scripts in ~/bin for GitLab access. NEVER manually construct curl commands to the GitLab API.
-- `gl doctor` reports whether the local prerequisites and GitLab env vars are present. Use it first when validating the helper setup.
-- `gl api get <web-url> [sub-resource]` translates GitLab web URLs to API endpoints. It uses `$GITLAB_BOT_READ_TOKEN`.
-- `gl api mr <mr-url>` fetches MR details, linked issues, and all user-generated comments. This is the go-to tool for reviewing merge requests.
-- `gl git ro ...` is the default tool for read-only Git transport. It uses `$GITLAB_BOT_READ_TOKEN`.
-- `gl git rw ...` is only for explicit write-capable Git transport. It uses `$GITLAB_WRITE_TOKEN`.
-
-## Filename
-- AVOID hyphen, underscores and dots in executable filename because they make tab completion difficult
-
-## Files from clown
-
-Paths under /Users/ are on clown. Paths under /tmp/fromclown/ are already transferred; read them directly.
-
-To transfer: call `mcp__desktop-commander__start_process` with command `sendfile <path>` and timeout_ms 10000. The stdout line is the path on bigfish. Then read that file.
-
-macOS paths may have invisible non-breaking spaces. Glob to a temp path first: `cp /path/to/Screenshot*10.56.21* /tmp/ss.png && sendfile /tmp/ss.png`.
-
-To grab the clipboard image: call `mcp__desktop-commander__start_process` with command `sendfile` (no args) and timeout_ms 10000.
+## Filenames
+- Avoid hyphens, underscores, and dots in executable filenames when practical because they hurt shell completion.
